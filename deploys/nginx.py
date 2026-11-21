@@ -123,7 +123,7 @@ def apply_nginx() -> None:
     server.shell(
         name="Validate nginx config",
         commands="nginx -t",
-        _if=config.will_change,
+        _if=config.did_change,
     )
 
     systemd.service(

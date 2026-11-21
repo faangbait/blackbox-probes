@@ -1,0 +1,9 @@
+[project]
+name = "blackbox-probes"
+version = "0.1.0"
+description = "Prometheus blackbox exporter automation for an external probe host."
+requires-python = ">=3.14"
+dependencies = [
+    "pyinfra>=3.11.2",
+    "pyyaml>=6.0.4",
+]

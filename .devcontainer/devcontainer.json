@@ -1,0 +1,21 @@
+{
+    "image": "faangbait/workspaces:devops",
+    "features": {
+        "ghcr.io/faangbait/dnf-features/claude:1": {
+            "pluginMarketplaces": "anthropics/claude-plugins-official astral-sh/agent-plugins",
+            "plugins": "chrome-devtools-mcp@claude-plugins-official frontend-design@claude-plugins-official playwright@claude-plugins-official astral@astral-sh"
+        },
+        "ghcr.io/faangbait/dnf-features/grok:1": {}
+    },
+    "postCreateCommand": "sudo rm -f /etc/ssh/ssh_config.d/99-devcontainer.conf",
+    "customizations": {
+        "vscode": {
+            "extensions": [],
+            "mcp": {},
+            "settings": {
+                "ty.path": ["/workspaces/blackbox-probes/.venv/bin/ty-extended"]
+            }
+        }
+    },
+    "name": "blackbox-probes"
+}

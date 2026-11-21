@@ -1,0 +1,6 @@
+# Public path is the target hostname with the dots removed.
+# https://example.com is served at /examplecom.
+- module: https_2xx
+  target: https://example.com
+- module: https_2xx
+  target: https://example.org

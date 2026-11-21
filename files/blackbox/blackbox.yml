@@ -1,0 +1,29 @@
+# No ICMP module. The unit does not grant CAP_NET_RAW.
+modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      preferred_ip_protocol: ip4
+      ip_protocol_fallback: true
+      follow_redirects: true
+
+  https_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      preferred_ip_protocol: ip4
+      ip_protocol_fallback: true
+      follow_redirects: true
+      fail_if_not_ssl: true
+
+  tcp_connect:
+    prober: tcp
+    timeout: 5s
+
+  ssh_banner:
+    prober: tcp
+    timeout: 5s
+    tcp:
+      query_response:
+        - expect: "^SSH-2.0-"

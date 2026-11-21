@@ -1,0 +1,62 @@
+name: test-blackbox
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: astral-sh/setup-uv@v10
+
+      - run: uv sync --frozen
+
+      - name: Syntax
+        run: |
+          uv run python - <<'PY'
+          from pathlib import Path
+
+          import yaml
+          from jinja2 import Environment
+
+          root = Path(".")
+          skip = {".git", ".venv"}
+
+          python_files = [
+              path
+              for path in root.rglob("*.py")
+              if not skip.intersection(path.parts)
+          ]
+          if not python_files:
+              raise SystemExit("no Python files found")
+          for path in python_files:
+              compile(path.read_text(encoding="utf-8"), str(path), "exec")
+
+          yaml_files = [
+              path
+              for path in root.rglob("*.yml")
+              if not skip.intersection(path.parts)
+          ]
+          for path in yaml_files:
+              yaml.safe_load(path.read_text(encoding="utf-8"))
+
+          env = Environment()
+          jinja_files = [
+              path
+              for path in root.rglob("*.j2")
+              if not skip.intersection(path.parts)
+          ]
+          for path in jinja_files:
+              env.parse(path.read_text(encoding="utf-8"))
+
+          print(
+              f"syntax ok: {len(python_files)} python, "
+              f"{len(yaml_files)} yaml, {len(jinja_files)} jinja"
+          )
+          PY

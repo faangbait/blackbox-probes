@@ -1,0 +1,14 @@
+{
+  "features": {
+    "ghcr.io/faangbait/dnf-features/claude:1": {
+      "version": "1.0.2",
+      "resolved": "ghcr.io/faangbait/dnf-features/claude@sha256:b3187b3a779087bba7cf3ec9f46639e792a52674523607221ffe78b901f974fb",
+      "integrity": "sha256:b3187b3a779087bba7cf3ec9f46639e792a52674523607221ffe78b901f974fb"
+    },
+    "ghcr.io/faangbait/dnf-features/grok:1": {
+      "version": "1.0.1",
+      "resolved": "ghcr.io/faangbait/dnf-features/grok@sha256:a2e4e04d8bcad96d7254fff0520241c8f65d764d2343ec7d5e6f5d04d2e29033",
+      "integrity": "sha256:a2e4e04d8bcad96d7254fff0520241c8f65d764d2343ec7d5e6f5d04d2e29033"
+    }
+  }
+}

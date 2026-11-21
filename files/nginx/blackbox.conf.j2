@@ -1,0 +1,14 @@
+# Rendered from files/nginx/probes.yml.
+# Each location replaces the URI, so the caller's query string is discarded.
+server {
+    listen {{ listen_port }};
+    server_name _;
+{% for probe in probes %}
+    location = {{ probe.path }} {
+        proxy_pass {{ upstream }}/probe?module={{ probe.module }}&target={{ probe.target_query }};
+    }
+{% endfor %}
+    location / {
+        return 404;
+    }
+}
